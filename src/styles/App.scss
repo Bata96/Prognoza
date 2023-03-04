@@ -1,5 +1,5 @@
-$b-color: rgba(black, 0.7);
-$w-color: rgba(wheat, 0.7);
+$b-color: rgba(black, 0.2);
+$w-color: rgba(white, 0.5);
 
 #container {
     width: 100vw;
@@ -8,31 +8,42 @@ $w-color: rgba(wheat, 0.7);
     background-size: cover;
     background-attachment: fixed;
     overflow: scroll;
+    display: flex;
+    justify-content: center;
 }
 
 .pozadina {
-    width: 100%;
-    min-height: 100%;
+    width: 50vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    margin-top: 100px;
 }
 
 .pretraga {
-    margin-top: 100px;
-    padding: 5px;
-    width: 40vw;
-    max-width: 500px;
-    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(black, 0.7);
+    padding: 10px 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    input {
+        padding: 5px;
+        width: 40vw;
+        max-width: 500px;
+        border-radius: 5px;
+    }
 }
         
 .trenutno {
     width: 50vw;
     color: black;
     background-color: $b-color;
-    margin-top: 20px;
-    margin-bottom: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -43,16 +54,13 @@ $w-color: rgba(wheat, 0.7);
 
 .naredno {
     width: 50vw;
-    background-color: $b-color;
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 100px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
+    gap: 10px;
+    overflow:hidden;
+}
+
+.drugoVreme {
+    width: 100%;
 }
 
 .prviRed {
@@ -62,6 +70,27 @@ $w-color: rgba(wheat, 0.7);
     align-items: center;
     justify-content: space-evenly;
     border-radius: 10px;
+    margin-top: 50px;
+
+    .lokacija {
+        padding: 10px;
+        font-size: 30px;
+    }
+
+    .kalendar {
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+.prviRed2 {
+    width: 100%;
+    background-color: $w-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    margin-top: 20px;
 
     .lokacija {
         padding: 10px;
@@ -131,33 +160,56 @@ $w-color: rgba(wheat, 0.7);
 }
         
 .manje, .vece {
-        background-color: $b-color;
-        color: wheat;
+        background-color: $w-color;
         border: none;
         border-radius: 10px;
-        margin: 10px 20px;
-        padding: 5px 15px;
+        padding: 5px 10px;
         border: 1px solid black;
 }
 
 button:hover {
         cursor: pointer;
-        background-color: rgba(black, 0.5);
+        background-color: rgba(white, 0.7);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
+    .pozadina {
+        margin-top: 0px;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .pretraga {
+        padding: 10px 0px;
+        border-radius: 0px;
+        input {
+            font-size: 16px;
+            padding: 5px 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        } 
+    }
+
     .trenutno {
-        width: 60vw;
-        padding: 40px 20px;
+        width: 90vw;
+        height: 100%;
+        background-color: rgba(black, 0);
     }
 
     .naredno {
         position: relative;
         padding: 40px;
+        width: 100%;
     }
 
     .prviRed {
-        flex-direction: column;
+        flex-direction: row;
+        margin-top: 30px;
     
         .lokacija {
             font-size: 25px;
@@ -167,9 +219,15 @@ button:hover {
             font-size: 18px;
         }
     }
+
+    .prviRed2 {
+        .kalendar {
+            font-size: 18px;
+        }
+    }
     
     .drugiRed {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     
         .slika img {
             height: 100px;
@@ -196,39 +254,4 @@ button:hover {
             font-size: 18px;
         }
     }
-
-    .manje {
-        position: absolute;
-        height: 100%;
-        width: 20px;
-        left: 0;
-        top: 0;
-        margin: 0;
-        padding: 0;
-        border-bottom-right-radius: 0px;
-        border-top-right-radius: 0px;
-        background-color: rgba(wheat, 0.7);
-        border: none;
-        color: black;
-    }
-
-    .vece {
-        position: absolute;
-        height: 100%;
-        width: 20px;
-        right: 0;
-        top: 0;
-        margin: 0;
-        padding: 0;
-        border-bottom-left-radius: 0px;
-        border-top-left-radius: 0px;
-        background-color: rgba(wheat, 0.7);
-        border: none;
-        color: black;
-    }
-
-    button:hover {
-        cursor: pointer;
-        background-color: rgba(wheat, 0.5);
-}
 }

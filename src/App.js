@@ -286,8 +286,10 @@ function App() {
     <div className="App" >
       <div id="container">
         <div className='pozadina'>
-        <input className='pretraga' onChange={mesto} onKeyDown={search} type="text" value={location} placeholder="Unesite lokaciju..."></input>
         <div className='trenutno'>
+          <div className='pretraga'>
+            <input onChange={mesto} onKeyDown={search} type="text" value={location} placeholder="Unesite lokaciju..."></input>
+          </div>
           <div className='prviRed'>
             <div className='lokacija' title="lokacija"> {trenutno.name}</div>
             <div className='kalendar'>
@@ -304,25 +306,27 @@ function App() {
             <div className='vetar' title="vetar"><FaWind className='' /> {Math.round(trenutno?.wind?.speed * 3.6)} km/h</div>
             <div className='vlaznost' title="vlažnost vazduha"><GiWaterDrop className='' /> {trenutno?.main?.humidity}%</div>
           </div>
-        </div>
-        <div className='naredno'>
-          <div className='prviRed'>
-            <div className='lokacija' title="lokacija"> {trenutno.name}</div>
-            <div className='kalendar'>
-              <div className='datum'>{oneDatum}-{meseci[oneMesec]}-{oneGodina} </div>
-              <div className='vreme'>{dani[oneDay]} {oneCas}:{oneMin}</div>
+          <div className='naredno'>
+            <div className='drugoVreme'>
+              <div className='prviRed2'>
+                <div className='kalendar'>Za 3 časa:</div>
+                <div className='kalendar'>
+                  <div className='datum'>{oneDatum}-{meseci[oneMesec]}-{oneGodina} </div>
+                  <div className='vreme'>{dani[oneDay]} {oneCas}:{oneMin}</div>
+                </div>
+              </div>
+              <div className='drugiRed'>
+                <div className='slika'><img src={slikaDva} alt="vreme posle" /></div>
+                <div className='temp' title="temperatura"><CiTempHigh /> {Math.round(data?.list?.[index]?.main?.temp_max)} °C</div>
+                <div className='opisSlike'>{data?.list?.[index]?.weather?.[0]?.description.charAt(0).toUpperCase() + data?.list?.[index]?.weather?.[0]?.description.slice(1) }</div>
+              </div>
+              <div className='treciRed'>
+                <button className='manje' onClick={smanji}>-</button>
+                <div className='vetar' title="vetar"><FaWind className='' /> {Math.round(data?.list?.[index]?.wind?.speed * 3.6)} km/h</div>
+                <div className='vlaznost' title="vlažnost vazduha"><GiWaterDrop className='' />  {data?.list?.[index]?.main?.humidity}%</div>
+                <button className='vece' onClick={uvecaj}>+</button>
+              </div>
             </div>
-          </div>
-          <div className='drugiRed'>
-            <div className='slika'><img src={slikaDva} alt="vreme posle" /></div>
-            <div className='temp' title="temperatura"><CiTempHigh /> {Math.round(data?.list?.[index]?.main?.temp_max)} °C</div>
-            <div className='opisSlike'>{data?.list?.[index]?.weather?.[0]?.description.charAt(0).toUpperCase() + data?.list?.[index]?.weather?.[0]?.description.slice(1) }</div>
-          </div>
-          <div className='treciRed'>
-            <button className='manje' onClick={smanji}>- 3h</button>
-            <div className='vetar' title="vetar"><FaWind className='' /> {Math.round(data?.list?.[index]?.wind?.speed * 3.6)} km/h</div>
-            <div className='vlaznost' title="vlažnost vazduha"><GiWaterDrop className='' />  {data?.list?.[index]?.main?.humidity}%</div>
-            <button className='vece' onClick={uvecaj}>+ 3h</button>
           </div>
         </div>
         </div>
